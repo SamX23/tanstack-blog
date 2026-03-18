@@ -49,11 +49,29 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
   shellComponent: RootDocument,
 })
 
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sami Kalammallah",
+  "jobTitle": "Software Engineer",
+  "url": "https://www.skalexsong.web.id",
+  "sameAs": [
+    "https://github.com/SamX23",
+    "https://www.linkedin.com/in/samikalammallah/",
+    "https://twitter.com/samikalammallah"
+  ],
+  "description": "Software Engineer specializing in Frontend, Cross-Platform apps, and Indie Development."
+};
+
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+        />
         <HeadContent />
       </head>
       <body className="font-sans antialiased [overflow-wrap:anywhere] bg-background text-foreground">

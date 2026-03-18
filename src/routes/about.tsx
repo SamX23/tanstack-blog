@@ -71,6 +71,35 @@ function About() {
         </div>
       </section>
 
+      <section className="space-y-8">
+        <h2 className="text-2xl font-bold text-foreground">Technical Challenges & Migrations</h2>
+        <div className="grid gap-6">
+          {[
+            {
+              title: "Next.js Ecosystem Evolution",
+              description: "Successfully led migrations from Pages to App Router and navigated the upgrades from Next.js 13 through 16, ensuring zero downtime and optimized performance."
+            },
+            {
+              title: "Modern Styling & Core React",
+              description: "Spearheaded the transition from Tailwind CSS v3 to v4 and React 18 to 19, leveraging early-adoption features while maintaining design system consistency."
+            },
+            {
+              title: "Global Enterprise Architecture",
+              description: "Implemented comprehensive Internationalization (I18n) strategies and architected a widget templating system utilizing a file-based component structure for dynamic content delivery."
+            },
+            {
+              title: "End-to-End Mobile Deployment",
+              description: "Developed and deployed cross-platform applications from the ground up, managing the entire lifecycle from initial architecture to successful releases on both the Apple App Store and Google Play Store."
+            }
+          ].map((challenge) => (
+            <div key={challenge.title} className="p-5 rounded-xl border border-border bg-muted/30 space-y-2">
+              <h3 className="font-bold text-foreground">{challenge.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{challenge.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="space-y-6">
         <h2 className="text-2xl font-bold text-foreground">Get in Touch</h2>
         <div className="space-y-2 text-muted-foreground">
