@@ -35,6 +35,12 @@ function About() {
             I am passionate about remote collaboration and working within international environments 
             to make a meaningful impact through technology.
           </p>
+          <p>
+            As a modern engineer, I embrace <strong>AI-Augmented Development</strong> to enhance productivity and code quality. 
+            I work extensively with <strong>Gemini</strong> and <strong>GitHub Copilot</strong> for architectural guidance and 
+            real-time pairing, and I frequently experiment with local LLMs using <strong>Ollama</strong> to maintain a 
+            privacy-first, cutting-edge workflow.
+          </p>
         </div>
       </section>
 
@@ -53,6 +59,15 @@ function About() {
               </div>
             </div>
           ))}
+          <div className="space-y-3">
+            <h3 className="font-semibold text-foreground">AI Tooling</h3>
+            <div className="flex flex-wrap gap-2">
+              <Badge variant="secondary" className="bg-[#3FC1C9]/10 text-[#3FC1C9] border-none font-medium">Gemini</Badge>
+              <Badge variant="secondary" className="bg-[#3FC1C9]/10 text-[#3FC1C9] border-none font-medium">GitHub Copilot</Badge>
+              <Badge variant="secondary" className="bg-[#3FC1C9]/10 text-[#3FC1C9] border-none font-medium">Ollama (Local LLMs)</Badge>
+              <Badge variant="secondary" className="bg-[#3FC1C9]/10 text-[#3FC1C9] border-none font-medium">Prompt Engineering</Badge>
+            </div>
+          </div>
         </div>
       </section>
 

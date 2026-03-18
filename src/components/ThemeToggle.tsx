@@ -72,10 +72,13 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggleMode}
       aria-label={label}
-      title={label}
-      className="rounded-full border border-border bg-muted px-3 py-1.5 text-sm font-semibold text-foreground shadow-lg shadow-[#364F6B]/10 transition hover:-translate-y-0.5"
+      aria-live="polite"
+      className="rounded-full border border-border bg-muted px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-foreground shadow-sm transition hover:bg-accent hover:text-accent-foreground active:scale-95 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
     >
-      {mode === 'auto' ? 'Auto' : mode === 'dark' ? 'Dark' : 'Light'}
+      <span className="flex items-center gap-2">
+        <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+        {mode === 'auto' ? 'System' : mode}
+      </span>
     </button>
   )
 }

@@ -57,9 +57,15 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="font-sans antialiased [overflow-wrap:anywhere] bg-background text-foreground">
+        <a 
+          href="#main-content" 
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-primary focus:text-primary-foreground focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold"
+        >
+          Skip to content
+        </a>
         <TanStackQueryProvider>
           <Header />
-          <main>
+          <main id="main-content" tabIndex={-1} className="outline-none">
             {children}
           </main>
           <Footer />

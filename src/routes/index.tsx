@@ -46,7 +46,10 @@ function App() {
               <div className="absolute -inset-1 bg-gradient-to-r from-[#3FC1C9] to-[#FC5185] rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
               <img
                 src="/profile.jpg"
-                alt="Sami Kalammallah"
+                alt="Sami Kalammallah - Portrait"
+                width={128}
+                height={128}
+                loading="eager"
                 className="relative w-32 h-32 rounded-full object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-500 border-2 border-background"
               />
             </div>
@@ -59,17 +62,39 @@ function App() {
               Software Engineer specializing in <span className="text-primary">Frontend</span> & <span className="text-primary">Cross-Platform</span> development.
             </p>
           </div>
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 pt-4 text-sm font-semibold">
-             <a href="https://github.com/SamX23" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-[#FC5185] transition-colors flex items-center gap-2">
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 pt-4 text-sm font-semibold">
+             <a 
+               href="https://github.com/SamX23" 
+               target="_blank" 
+               rel="noreferrer" 
+               aria-label="GitHub Profile"
+               className="text-muted-foreground hover:text-[#FC5185] transition-colors flex items-center gap-2 p-1 sm:p-0"
+             >
                GitHub
              </a>
-             <a href="https://www.linkedin.com/in/samikalammallah/" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-[#3FC1C9] transition-colors flex items-center gap-2">
+             <a 
+               href="https://www.linkedin.com/in/samikalammallah/" 
+               target="_blank" 
+               rel="noreferrer" 
+               aria-label="LinkedIn Profile"
+               className="text-muted-foreground hover:text-[#3FC1C9] transition-colors flex items-center gap-2 p-1 sm:p-0"
+             >
                LinkedIn
              </a>
-             <a href="https://twitter.com/samikalammallah" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-[#FC5185] transition-colors flex items-center gap-2">
+             <a 
+               href="https://twitter.com/samikalammallah" 
+               target="_blank" 
+               rel="noreferrer" 
+               aria-label="Twitter Profile"
+               className="text-muted-foreground hover:text-[#FC5185] transition-colors flex items-center gap-2 p-1 sm:p-0"
+             >
                Twitter
              </a>
-             <a href="mailto:skalexsong@gmail.com" className="text-muted-foreground hover:text-[#3FC1C9] transition-colors flex items-center gap-2">
+             <a 
+               href="mailto:skalexsong@gmail.com" 
+               aria-label="Send Email"
+               className="text-muted-foreground hover:text-[#3FC1C9] transition-colors flex items-center gap-2 p-1 sm:p-0"
+             >
                Email
              </a>
           </div>
