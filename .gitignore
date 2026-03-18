@@ -8,3 +8,4 @@ dist
 *.swp
 *.swo
 routeTree.gen.ts
+bun.lockb

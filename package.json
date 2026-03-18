@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vinxi dev",
-    "build": "vinxi build",
-    "start": "vinxi start",
-    "typecheck": "tsc --noEmit"
+    "dev": "bun vinxi dev",
+    "build": "bun vinxi build",
+    "start": "bun vinxi start",
+    "typecheck": "bun tsc --noEmit"
   },
   "dependencies": {
     "@tanstack/start": "^1.114.2",

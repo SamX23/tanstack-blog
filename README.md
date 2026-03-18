@@ -42,10 +42,10 @@ tanstack-blog/
 
 ```bash
 # Install dependencies
-npm install
+bun install
 
 # Start development server
-npm run dev
+bun run dev
 
 # Open http://localhost:3000
 ```
@@ -54,16 +54,16 @@ npm run dev
 
 ```bash
 # Build
-npm run build
+bun run build
 
 # Start production server
-npm run start
+bun run start
 ```
 
 ### Type Check
 
 ```bash
-npm run typecheck
+bun run typecheck
 ```
 
 ## 📝 Adding Blog Posts
@@ -137,6 +137,12 @@ MIT License - feel free to use for your own blog!
 ## 👤 Author
 
 **Sam Kalammallah** - [@SamX23](https://github.com/SamX23)
+
+---
+
+## 🤖 Built By
+
+This project was scaffolded by **Bro Mac M1 (OpenClaw)** — your personal AI assistant.
 
 ---
 
