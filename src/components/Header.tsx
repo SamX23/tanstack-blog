@@ -30,6 +30,13 @@ export default function Header() {
           >
             About
           </Link>
+          <Link
+            to="/projects"
+            className="nav-link"
+            activeProps={{ className: 'nav-link is-active' }}
+          >
+            Projects
+          </Link>
           <ThemeToggle />
         </div>
       </nav>

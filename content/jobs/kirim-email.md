@@ -1,15 +1,21 @@
 ---
-jobTitle: Technical Support Officer
-company: Kirim.email
-location: Remote
-startDate: 2019-01-01
-endDate: 2020-12-31
-summary: Assisted global users with email marketing tools, customized email templates using HTML/CSS, and bridged users with the development team.
-tags: ["HTML", "CSS", "Technical Support", "Email Marketing", "Bug Reporting", "Customer Support"]
+jobTitle: Frontend Developer
+company: PT Kirim Email Indonesia
+location: Bandung (Remote)
+startDate: 2021-06-01
+endDate: 2022-09-30
+summary: Maintained and enhanced front-end architecture for Utas.co, a leading membership and app platform.
+tags: ["HTML", "CSS", "JS", "jQuery", "Sass", "Webpack", "Figma", "Web Performance"]
 ---
 
 ### **Key Contributions**
-- Managed and assisted global users with email marketing tools, ensuring high satisfaction and smooth operations.
-- Customized email templates for clients using **HTML** and **CSS**, tailoring designs to specific branding needs.
-- Acted as a vital bridge between users and the development team, reporting bugs and providing user feedback for feature improvements.
-- Contributed to feature testing, ensuring product reliability before new releases.
+- Maintained and enhanced front-end architecture for **Utas.co** (Membership and App platforms).
+- Implemented high-fidelity UI/UX from **Figma** using **HTML, CSS, JS, jQuery, Sass, and Webpack**.
+- Optimized web performance and accessibility to meet **Google Lighthouse** standards.
+- Collaborated with design and development teams to ensure a seamless user experience.
+
+---
+**Previous Role: Technical Support Officer**
+*December 2019 – June 2021*
+- Assisted global users with email marketing tools.
+- Customized email templates (HTML/CSS), performed feature testing, and reported bugs.
