@@ -32,7 +32,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       { name: 'keywords', content: 'Sami Kalammallah, Software Engineer, Indie Developer, Frontend, React, Next.js, TypeScript, Hong Kong, Remote Developer' },
       { property: 'og:title', content: 'Sami Kalammallah | Software Engineer' },
       { property: 'og:description', content: 'Building performant web and mobile experiences. Check out my latest indie projects and professional journey.' },
-      { property: 'og:image', content: '/profile.png' },
+      { property: 'og:image', content: '/profile.jpg' },
       { property: 'og:type', content: 'website' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:creator', content: '@samikalammallah' },

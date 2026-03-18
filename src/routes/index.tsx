@@ -45,7 +45,7 @@ function App() {
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-[#3FC1C9] to-[#FC5185] rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
               <img
-                src="/profile.png"
+                src="/profile.jpg"
                 alt="Sami Kalammallah"
                 className="relative w-32 h-32 rounded-full object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-500 border-2 border-background"
               />
