@@ -12,7 +12,7 @@ const jobs = defineCollection({
     endDate: z.string().optional(),
     company: z.string(),
     location: z.string(),
-    tags: z.array(z.string()),
+    tags: z.array(z.string()).optional(),
     content: z.string(),
   }),
 })
@@ -26,7 +26,7 @@ const education = defineCollection({
     summary: z.string(),
     startDate: z.string(),
     endDate: z.string().optional(),
-    tags: z.array(z.string()),
+    tags: z.array(z.string()).optional(),
     content: z.string(),
   }),
 })
