@@ -1,66 +1,220 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { useState, useMemo } from 'react'
+import { marked } from 'marked'
 
-export const Route = createFileRoute("/")({
-  component: HomePage,
-});
+import { createFileRoute } from '@tanstack/react-router'
+import { allJobs, allEducations } from 'content-collections'
+import { Card, CardContent, CardHeader, CardTitle } from '#/components/ui/card'
+import { Checkbox } from '#/components/ui/checkbox'
+import { Badge } from '#/components/ui/badge'
+import { Separator } from '#/components/ui/separator'
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from '#/components/ui/hover-card'
 
-function HomePage() {
+import ResumeAssistant from '#/components/ResumeAssistant'
+
+export const Route = createFileRoute('/')({
+  component: App,
+})
+
+function App() {
+  const [selectedTags, setSelectedTags] = useState<string[]>([])
+
+  // Get unique tags from all jobs
+  const allTags = useMemo(() => {
+    const tags = new Set<string>()
+    allJobs.forEach((job) => {
+      job.tags.forEach((tag) => tags.add(tag))
+    })
+    return Array.from(tags).sort()
+  }, [])
+
+  // Filter jobs based on selected tags
+  const filteredJobs = useMemo(() => {
+    if (selectedTags.length === 0) return allJobs
+    return allJobs.filter((job) =>
+      selectedTags.some((tag) => job.tags.includes(tag)),
+    )
+  }, [selectedTags])
+
   return (
-    <div className="space-y-12">
-      {/* Hero Section */}
-      <section className="text-center py-16">
-        <h1 className="text-5xl font-bold text-gray-900 mb-4">
-          Hi, I'm <span className="text-primary-600">Sam</span>
-        </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Software Engineer building modern web experiences. Sharing thoughts on React,
-          TypeScript, and full-stack development.
-        </p>
-      </section>
+    <>
+      <ResumeAssistant />
+      <div className="min-h-screen bg-linear-to-b from-gray-50 to-gray-100">
+        <div className="flex">
+          {/* Sidebar with filters */}
+          <div className="w-72 min-h-screen bg-white border-r shadow-sm p-8 sticky top-0">
+            <h3 className="text-lg font-semibold mb-6 text-gray-900">
+              Skills & Technologies
+            </h3>
+            <div className="space-y-4">
+              {allTags.map((tag) => (
+                <div key={tag} className="flex items-center space-x-3 group">
+                  <Checkbox
+                    id={tag}
+                    checked={selectedTags.includes(tag)}
+                    onCheckedChange={(checked) => {
+                      if (checked) {
+                        setSelectedTags([...selectedTags, tag])
+                      } else {
+                        setSelectedTags(selectedTags.filter((t) => t !== tag))
+                      }
+                    }}
+                    className="data-[state=checked]:bg-blue-600"
+                  />
+                  <label
+                    htmlFor={tag}
+                    className="text-sm font-medium leading-none text-gray-700 group-hover:text-gray-900 transition-colors cursor-pointer"
+                  >
+                    {tag}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
 
-      {/* Featured Posts */}
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Latest Posts</h2>
-        <div className="grid gap-6 md:grid-cols-2">
-          <BlogPostCard
-            title="Getting Started with TanStack Start"
-            excerpt="Learn how to build full-stack React apps with TanStack Start v2..."
-            date="March 18, 2026"
-            slug="getting-started-tanstack-start"
-          />
-          <BlogPostCard
-            title="WebAssembly for Web Developers"
-            excerpt="Understanding WASM and when to use it in your projects..."
-            date="March 15, 2026"
-            slug="webassembly-for-web-devs"
-          />
-          <BlogPostCard
-            title="Next.js vs TanStack Start"
-            excerpt="Comparing two modern full-stack React frameworks..."
-            date="March 10, 2026"
-            slug="nextjs-vs-tanstack"
-          />
-          <BlogPostCard
-            title="TypeScript Best Practices 2026"
-            excerpt="Level up your TypeScript skills with these patterns..."
-            date="March 5, 2026"
-            slug="typescript-best-practices"
-          />
+          {/* Main content */}
+          <div className="flex-1 p-8 lg:p-12">
+            <div className="max-w-4xl mx-auto space-y-12">
+              <div className="text-center space-y-4">
+                <h1 className="text-5xl font-bold bg-linear-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
+                  My Resume
+                </h1>
+                <p className="text-gray-600 text-lg">
+                  Professional Experience & Education
+                </p>
+                <Separator className="mt-8" />
+              </div>
+
+              {/* Career Summary */}
+              <Card className="border-0 shadow-lg bg-white/50 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-gray-900">
+                    Career Summary
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center gap-8">
+                    <p className="text-gray-700 flex-1 leading-relaxed">
+                      I am a passionate and driven professional seeking
+                      opportunities that will leverage my extensive experience
+                      in frontend development while providing continuous growth
+                      and learning opportunities. My goal is to contribute to
+                      innovative projects that challenge me to expand my skill
+                      set and make meaningful impacts through technology.
+                    </p>
+                    <img
+                      src="/headshot-on-white.jpg"
+                      alt="Professional headshot"
+                      className="w-44 h-52 rounded-2xl object-cover shadow-md transition-transform hover:scale-105"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Work Experience */}
+              <section className="space-y-6">
+                <h2 className="text-3xl font-semibold text-gray-900">
+                  Work Experience
+                </h2>
+                <div className="space-y-6">
+                  {filteredJobs.map((job) => (
+                    <Card
+                      key={job.jobTitle}
+                      className="border-0 shadow-md hover:shadow-lg transition-shadow"
+                    >
+                      <CardHeader>
+                        <div className="flex justify-between items-start">
+                          <div className="space-y-2">
+                            <CardTitle className="text-xl text-gray-900">
+                              {job.jobTitle}
+                            </CardTitle>
+                            <p className="text-blue-600 font-medium">
+                              {job.company} - {job.location}
+                            </p>
+                          </div>
+                          <Badge variant="secondary" className="text-sm">
+                            {job.startDate} - {job.endDate || 'Present'}
+                          </Badge>
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-700 mb-6 leading-relaxed">
+                          {job.summary}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {job.tags.map((tag) => (
+                            <HoverCard key={tag}>
+                              <HoverCardTrigger>
+                                <Badge
+                                  variant="outline"
+                                  className="hover:bg-gray-100 transition-colors cursor-pointer"
+                                >
+                                  {tag}
+                                </Badge>
+                              </HoverCardTrigger>
+                              <HoverCardContent className="w-64">
+                                <p className="text-sm text-gray-600">
+                                  Experience with {tag} in professional
+                                  development
+                                </p>
+                              </HoverCardContent>
+                            </HoverCard>
+                          ))}
+                        </div>
+                        {job.content && (
+                          <div
+                            className="mt-6 text-gray-700 prose prose-sm max-w-none"
+                            dangerouslySetInnerHTML={{
+                              __html: marked(job.content),
+                            }}
+                          />
+                        )}
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </section>
+
+              {/* Education */}
+              <section className="space-y-6">
+                <h2 className="text-3xl font-semibold text-gray-900">
+                  Education
+                </h2>
+                <div className="space-y-6">
+                  {allEducations.map((education) => (
+                    <Card
+                      key={education.school}
+                      className="border-0 shadow-md hover:shadow-lg transition-shadow"
+                    >
+                      <CardHeader>
+                        <CardTitle className="text-xl text-gray-900">
+                          {education.school}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-700 leading-relaxed">
+                          {education.summary}
+                        </p>
+                        {education.content && (
+                          <div
+                            className="mt-6 text-gray-700 prose prose-sm max-w-none"
+                            dangerouslySetInnerHTML={{
+                              __html: marked(education.content),
+                            }}
+                          />
+                        )}
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </section>
+            </div>
+          </div>
         </div>
-      </section>
-    </div>
-  );
-}
-
-function BlogPostCard({ title, excerpt, date, slug }: { title: string; excerpt: string; date: string; slug: string }) {
-  return (
-    <a
-      href={`/blog/${slug}`}
-      className="block p-6 bg-white rounded-xl border border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all"
-    >
-      <h3 className="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
-      <p className="text-gray-600 mb-4">{excerpt}</p>
-      <p className="text-sm text-gray-500">{date}</p>
-    </a>
-  );
+      </div>
+    </>
+  )
 }

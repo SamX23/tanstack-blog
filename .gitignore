@@ -9,3 +9,6 @@ dist
 *.swo
 routeTree.gen.ts
 bun.lockb
+
+.content-collections
+.wrangler

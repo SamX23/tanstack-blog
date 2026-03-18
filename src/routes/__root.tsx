@@ -1,38 +1,78 @@
-import { createRootRoute, Outlet } from "@tanstack/react-router";
+import {
+  HeadContent,
+  Scripts,
+  createRootRouteWithContext,
+} from '@tanstack/react-router'
+import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
+import { TanStackDevtools } from '@tanstack/react-devtools'
+import Footer from '../components/Footer'
+import Header from '../components/Header'
 
-export const Route = createRootRoute({
-  component: () => (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <header className="border-b border-gray-200 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-4xl mx-auto px-4 py-4">
-          <nav className="flex items-center justify-between">
-            <a href="/" className="text-xl font-bold text-primary-600 hover:text-primary-700">
-              Sam's Blog
-            </a>
-            <div className="flex gap-6">
-              <a href="/" className="text-gray-600 hover:text-primary-600 transition">
-                Home
-              </a>
-              <a href="/blog" className="text-gray-600 hover:text-primary-600 transition">
-                Blog
-              </a>
-              <a href="/about" className="text-gray-600 hover:text-primary-600 transition">
-                About
-              </a>
-            </div>
-          </nav>
-        </div>
-      </header>
+import TanStackQueryProvider from '../integrations/tanstack-query/root-provider'
 
-      <main className="max-w-4xl mx-auto px-4 py-8">
-        <Outlet />
-      </main>
+import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 
-      <footer className="border-t border-gray-200 mt-16 py-8 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 text-center text-gray-600">
-          <p>© 2026 Sam Kalammallah. Built with TanStack Start.</p>
-        </div>
-      </footer>
-    </div>
-  ),
-});
+import appCss from '../styles.css?url'
+
+import type { QueryClient } from '@tanstack/react-query'
+
+interface MyRouterContext {
+  queryClient: QueryClient
+}
+
+const THEME_INIT_SCRIPT = `(function(){try{var stored=window.localStorage.getItem('theme');var mode=(stored==='light'||stored==='dark'||stored==='auto')?stored:'auto';var prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;var resolved=mode==='auto'?(prefersDark?'dark':'light'):mode;var root=document.documentElement;root.classList.remove('light','dark');root.classList.add(resolved);if(mode==='auto'){root.removeAttribute('data-theme')}else{root.setAttribute('data-theme',mode)}root.style.colorScheme=resolved;}catch(e){}})();`
+
+export const Route = createRootRouteWithContext<MyRouterContext>()({
+  head: () => ({
+    meta: [
+      {
+        charSet: 'utf-8',
+      },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1',
+      },
+      {
+        title: 'TanStack Start Starter',
+      },
+    ],
+    links: [
+      {
+        rel: 'stylesheet',
+        href: appCss,
+      },
+    ],
+  }),
+  shellComponent: RootDocument,
+})
+
+function RootDocument({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+        <HeadContent />
+      </head>
+      <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
+        <TanStackQueryProvider>
+          <Header />
+          {children}
+          <Footer />
+          <TanStackDevtools
+            config={{
+              position: 'bottom-right',
+            }}
+            plugins={[
+              {
+                name: 'Tanstack Router',
+                render: <TanStackRouterDevtoolsPanel />,
+              },
+              TanStackQueryDevtools,
+            ]}
+          />
+        </TanStackQueryProvider>
+        <Scripts />
+      </body>
+    </html>
+  )
+}
