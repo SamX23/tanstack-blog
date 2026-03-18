@@ -80,10 +80,10 @@ function App() {
             <div className="max-w-4xl mx-auto space-y-12">
               <div className="text-center space-y-4">
                 <h1 className="text-5xl font-bold bg-linear-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
-                  My Resume
+                  Sami Kalammallah
                 </h1>
                 <p className="text-gray-600 text-lg">
-                  Professional Experience & Education
+                  Frontend Engineer specializing in building performant, scalable web and mobile applications.
                 </p>
                 <Separator className="mt-8" />
               </div>
@@ -98,16 +98,11 @@ function App() {
                 <CardContent>
                   <div className="flex items-center gap-8">
                     <p className="text-gray-700 flex-1 leading-relaxed">
-                      I am a passionate and driven professional seeking
-                      opportunities that will leverage my extensive experience
-                      in frontend development while providing continuous growth
-                      and learning opportunities. My goal is to contribute to
-                      innovative projects that challenge me to expand my skill
-                      set and make meaningful impacts through technology.
+                      Frontend Engineer specializing in building performant, scalable web and mobile applications using Next.js, TypeScript, and GraphQL. Proven experience in remote collaboration with international teams, delivering impactful digital solutions across various industries.
                     </p>
                     <img
                       src="/headshot-on-white.jpg"
-                      alt="Professional headshot"
+                      alt="Sami Kalammallah professional headshot"
                       className="w-44 h-52 rounded-2xl object-cover shadow-md transition-transform hover:scale-105"
                     />
                   </div>
